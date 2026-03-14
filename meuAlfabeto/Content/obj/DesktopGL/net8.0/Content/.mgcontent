@@ -4,6 +4,10 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/background/florest03.jpg</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/background/florest04.jpg</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/background/forest1.jpg</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/background/forest2.jpg</File>
     <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/idle/Idle_1.png</File>
     <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/idle/Idle_10.png</File>
     <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/idle/Idle_11.png</File>
@@ -72,6 +76,10 @@
     <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/walk/Walk_20.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File>background/florest1.jpg</File>
+    <File>background/florest2.jpg</File>
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

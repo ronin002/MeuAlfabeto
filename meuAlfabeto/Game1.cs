@@ -12,17 +12,21 @@ public class Game1 : Game
     private SpriteBatch _spriteBatch;
     
 
+
+    // Enviromment
+    Texture2D backgroundTexture;
+
     // Player Variables
 
     // Animations
     List<Texture2D> idleSprites;
     List<Texture2D> walkSprites;
-     List<Texture2D> jumpSprites;
+    List<Texture2D> jumpSprites;
 
     Vector2 playerPosition;
     int currentFrame = 0;
     double timer = 0;
-    double frameTime = 0.05;
+    double frameTime = 0.04;
 
 
     List<Texture2D> currentAnimation;
@@ -55,6 +59,11 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+        //Environment
+        backgroundTexture = Content.Load<Texture2D>("background/florest1");
+
+
+        //player
         playerPosition = new Vector2(300, 320);
 
         idleSprites = new List<Texture2D>();
@@ -96,35 +105,59 @@ public class Game1 : Game
         
         List<Texture2D> oldAnimation = currentAnimation;
 
-        // Começamos assumindo que ela está parada
-        currentAnimation = idleSprites;
+        if (playerPosition.Y < groundLevel) // Se estiver acima do chão
+        {
+            verticalVelocity += gravity * dt; // Gravidade puxa pra baixo
+        }
+        else // Se tocou no chão
+        {
+            verticalVelocity = 0;
+            playerPosition.Y = groundLevel;
+            isJumping = false;
+        }
 
-        // Movimento para Esquerda
+        // 2. Comando de Pulo
+        if (kstate.IsKeyDown(Keys.Space) && !isJumping)
+        {
+            verticalVelocity = jumpForce;
+            isJumping = true;
+        }
+
+        // 3. Aplica a velocidade vertical na posição
+        playerPosition.Y += verticalVelocity * dt;
+
+        //4. Lógica de Animação (Estados)
         if (kstate.IsKeyDown(Keys.Left))
         {
             playerPosition.X -= playerSpeed * dt;
-            currentAnimation = walkSprites;
-            flip = SpriteEffects.FlipHorizontally; // Vira para a esquerda
+            flip = SpriteEffects.FlipHorizontally;
         }
-        else if (kstate.IsKeyDown(Keys.Right))
+        if (kstate.IsKeyDown(Keys.Right))
         {
             playerPosition.X += playerSpeed * dt;
-            currentAnimation = walkSprites;
-            flip = SpriteEffects.None; // Direita é o padrão
+            flip = SpriteEffects.None;
         }
-        else if (kstate.IsKeyDown(Keys.Space))
+
+        // 2. Definição da Animação (Aqui decidimos qual sprite mostrar)
+        if (isJumping)
         {
             currentAnimation = jumpSprites;
         }
+        else if (kstate.IsKeyDown(Keys.Left) || kstate.IsKeyDown(Keys.Right))
+        {
+            currentAnimation = walkSprites;
+        }
+        else
+        {
+            currentAnimation = idleSprites;
+        }
 
-
+        // Reset de frame se trocar animação
         if (oldAnimation != currentAnimation)
         {
             currentFrame = 0;
             timer = 0;
         }
-
-
 
         // --- Lógica de Animação ---
         timer += gameTime.ElapsedGameTime.TotalSeconds;
@@ -149,8 +182,12 @@ public class Game1 : Game
 
         // TODO: Add your drawing code here
         _spriteBatch.Begin();
+
+        Rectangle screenBounds = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
     
-        float escala = 0.2f;
+        _spriteBatch.Draw(backgroundTexture, screenBounds, Color.White);
+    
+        float scale = 0.2f;
        
         int safeFrame = currentFrame % currentAnimation.Count;
 
@@ -161,7 +198,7 @@ public class Game1 : Game
             Color.White, 
             0f, 
             Vector2.Zero, 
-            0.3f, // Sua escala
+            scale, //0.3f, // Sua escala
             flip, // Aplica o efeito de espelhar
             0f
         );
