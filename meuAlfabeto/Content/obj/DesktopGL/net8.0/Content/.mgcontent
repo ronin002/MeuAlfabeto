@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/idle/Idle_1.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/idle/Idle_10.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/idle/Idle_11.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/idle/Idle_12.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/idle/Idle_13.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/idle/Idle_14.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/idle/Idle_15.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/idle/Idle_16.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/idle/Idle_2.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/idle/Idle_3.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/idle/Idle_4.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/idle/Idle_5.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/idle/Idle_6.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/idle/Idle_7.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/idle/Idle_8.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/idle/Idle_9.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_01.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_02.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_03.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_04.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_05.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_06.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_07.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_08.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_09.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_10.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_11.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_12.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_13.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_14.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_15.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_16.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_17.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_18.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_19.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_20.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_21.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_22.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_23.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_24.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_25.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_26.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_27.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_28.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_29.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/jump/Jump_30.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/walk/Walk_01.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/walk/Walk_02.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/walk/Walk_03.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/walk/Walk_04.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/walk/Walk_05.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/walk/Walk_06.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/walk/Walk_07.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/walk/Walk_08.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/walk/Walk_09.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/walk/Walk_10.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/walk/Walk_11.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/walk/Walk_12.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/walk/Walk_13.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/walk/Walk_14.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/walk/Walk_15.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/walk/Walk_16.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/walk/Walk_17.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/walk/Walk_18.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/walk/Walk_19.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/walk/Walk_20.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
