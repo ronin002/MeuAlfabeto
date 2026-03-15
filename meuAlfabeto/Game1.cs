@@ -12,19 +12,11 @@ public class Game1 : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
-    
-
-
-    // Enviromment
-    
 
     Player _player;
  
-
     StageLevel _stageLevel;
     
-
-
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -43,19 +35,14 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        //Environment
-        //backgroundTexture = Content.Load<Texture2D>("background/florest1");
-
         (string, int) maskIdle = ("player/idle/Idle_{0}", 16); //path and size of the idle sprites
         (string, int) maskWalk = ("player/walk/Walk_{0}", 19);
         (string, int) maskJump = ("player/jump/Jump_{0}", 30);
 
         _player = new Player(new Vector2(300, 320), Content, maskIdle, maskWalk, maskJump);
 
-        // Stage
         _stageLevel = new StageLevel(0, Content); // Carrega o stage 0 (AEIOU)
         
-
     }
 
     
