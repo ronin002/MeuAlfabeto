@@ -57,10 +57,18 @@ namespace meuAlfabeto
             {
                 _currentStage = stageIndex;
                 _content = content;
+
+                LoadEffectsSounds();
                 LoadLevelBackground();
                 LoadLevelAfabet();
             }
             
+        }
+
+        public void LoadEffectsSounds()
+        {
+            _soundOk = _content.Load<SoundEffect>("music/effects/collectOk");
+            _soundFail = _content.Load<SoundEffect>("music/effects/collectFail");
         }
 
         public void LoadLevelBackground()
@@ -195,6 +203,7 @@ namespace meuAlfabeto
                     // Se pegou a letra certa na ordem
                     if (letra.Caractere == ordemAlfabeto[indiceLetraAtual])
                     {
+                        _soundOk.Play();
                         indiceLetraAtual++; // Avança no alfabeto!
                         if (indiceLetraAtual >= ordemAlfabeto.Length)
                         {
@@ -202,6 +211,10 @@ namespace meuAlfabeto
                             _currentStage ++;
                             LoadLevelBackground();
                         }                      
+                    }
+                    else
+                    {
+                        _soundFail.Play();
                     }
                     
                     spawnTimer = 0; 

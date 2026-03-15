@@ -12,6 +12,8 @@
     <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/background/forest1.jpg</File>
     <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/background/forest2.jpg</File>
     <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/letters/alfabeto_cinza.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/music/effects/collectFail.mp3</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/music/effects/collectOk.mp3</File>
     <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/idle/Idle_1.png</File>
     <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/idle/Idle_10.png</File>
     <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/idle/Idle_11.png</File>
@@ -87,6 +89,8 @@
     <File xsi:nil="true" />
     <File>background/florest1.jpg</File>
     <File>background/florest2.jpg</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>player/idle/Idle_01.png</File>
     <File xsi:nil="true" />

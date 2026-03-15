@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/music/effects/collectFail.mp3</SourceFile>
+  <SourceTime>2026-03-15T15:04:27.4719839-03:00</SourceTime>
+  <DestFile>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/bin/DesktopGL/Content/music/effects/collectFail.xnb</DestFile>
+  <DestTime>2026-03-15T15:17:59.2576152-03:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2025-10-20T11:25:32-03:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2025-10-20T11:25:32-03:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
