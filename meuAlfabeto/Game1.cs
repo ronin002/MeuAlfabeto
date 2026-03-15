@@ -16,15 +16,10 @@ public class Game1 : Game
 
 
     // Enviromment
-    Texture2D backgroundTexture;
-
-    // Player Variables
-
+    
 
     Player _player;
  
-
-    // StageLevel
 
     StageLevel _stageLevel;
     
@@ -49,17 +44,15 @@ public class Game1 : Game
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
         //Environment
-        backgroundTexture = Content.Load<Texture2D>("background/florest1");
+        //backgroundTexture = Content.Load<Texture2D>("background/florest1");
 
-        _player = new Player();
         (string, int) maskIdle = ("player/idle/Idle_{0}", 16); //path and size of the idle sprites
         (string, int) maskWalk = ("player/walk/Walk_{0}", 19);
         (string, int) maskJump = ("player/jump/Jump_{0}", 30);
-        _player.LoadPlayer(Content, maskIdle, maskWalk, maskJump);
 
-      
+        _player = new Player(new Vector2(300, 320), Content, maskIdle, maskWalk, maskJump);
 
-        // Letters
+        // Stage
         _stageLevel = new StageLevel(0, Content); // Carrega o stage 0 (AEIOU)
         
 
@@ -78,7 +71,7 @@ public class Game1 : Game
         float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
         // PLAYER MOVEMENT + GRAVITY + JUMPING
-        _player.Update(gameTime);
+        _player.Update(gameTime, GraphicsDevice);
         
         _stageLevel.Update(gameTime, GraphicsDevice, _player.Position);
 
@@ -96,25 +89,10 @@ public class Game1 : Game
         // TODO: Add your drawing code here
         _spriteBatch.Begin();
 
-        Rectangle screenBounds = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
-    
-        _spriteBatch.Draw(backgroundTexture, screenBounds, Color.White);
-    
-        float scale = 0.2f;
-       
-        int safeFrame =  _player._currentFrame %  _player._currentAnimation.Count;
+        _stageLevel.Draw(_spriteBatch, GraphicsDevice);
 
-        _spriteBatch.Draw(
-            _player._currentAnimation[safeFrame], 
-            _player.Position, 
-            null, 
-            Color.White, 
-            0f, 
-            Vector2.Zero, 
-            scale, //0.3f, // Sua escala
-            _player._flip, // Aplica o efeito de espelhar
-            0f
-        );
+        _player.Draw(_spriteBatch);
+
 
         // 2. Banner do Alfabeto (Topo da tela)
         Vector2 bannerPos = new Vector2(20, 20);

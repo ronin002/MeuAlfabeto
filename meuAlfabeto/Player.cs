@@ -14,6 +14,7 @@ namespace meuAlfabeto
         private List<Texture2D> _idleSprites, _walkSprites, _jumpSprites;        
         public List<Texture2D> _currentAnimation;
         
+        public float scale = 0.2f;
         public int _currentFrame;
         public double _timer;
         public double _frameTime = 0.04;
@@ -28,27 +29,24 @@ namespace meuAlfabeto
         public bool IsJumping { get; private set; }
 
         // Construtor
-        public Player()
-        {
-            
-        }
-        public Player(Vector2 startPosition, List<Texture2D> idle, List<Texture2D> walk, List<Texture2D> jump)
-        {
-            Position = startPosition;
-            _idleSprites = idle;
-            _walkSprites = walk;
-            _jumpSprites = jump;
-            _currentAnimation = _idleSprites;
-        }
 
         
-        public void LoadPlayer(ContentManager content, (string, int) maskIdle, (string, int) maskWalk, (string, int) maskJump)
+        public Player(Vector2 startPosition, ContentManager content, 
+                                            (string mask, int size) maskIdle, 
+                                            (string mask, int size) maskWalk, 
+                                            (string mask, int size) maskJump)
         {
+            /*
             var playerPosition = new Vector2(300, 320);
             List<Texture2D> idleSprites = LoadPlayerSprites(content, "player/idle/Idle_{0}", 16);
             List<Texture2D> walkSprites = LoadPlayerSprites(content, "player/walk/Walk_{0}", 19);
             List<Texture2D> jumpSprites = LoadPlayerSprites(content, "player/jump/Jump_{0}", 30);
-            
+            */
+            Position = startPosition;
+            List<Texture2D> idleSprites = LoadPlayerSprites(content, maskIdle.mask, maskIdle.size);
+            List<Texture2D> walkSprites = LoadPlayerSprites(content, maskWalk.mask, maskWalk.size);
+            List<Texture2D> jumpSprites = LoadPlayerSprites(content, maskJump.mask, maskJump.size);
+
             _idleSprites = idleSprites;
             _walkSprites = walkSprites;
             _jumpSprites = jumpSprites;
@@ -68,7 +66,7 @@ namespace meuAlfabeto
             return sprites;
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, GraphicsDevice graphics)
         {
             var kstate = Keyboard.GetState();
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -100,12 +98,14 @@ namespace meuAlfabeto
             if (kstate.IsKeyDown(Keys.Left))
             {
                 Position.X -= _speed * dt;
+                Position.X = MathHelper.Clamp(Position.X, 0, graphics.Viewport.Width - 75);
                 _flip = SpriteEffects.FlipHorizontally;
                 moving = true;
             }
             if (kstate.IsKeyDown(Keys.Right))
             {
                 Position.X += _speed * dt;
+                Position.X = MathHelper.Clamp(Position.X, 0,  graphics.Viewport.Width - 75);
                 _flip = SpriteEffects.None;
                 moving = true;
             }
@@ -128,14 +128,15 @@ namespace meuAlfabeto
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            int safeFrame =  _currentFrame %  _currentAnimation.Count;
             spriteBatch.Draw(
-                _currentAnimation[_currentFrame],
+                _currentAnimation[safeFrame],
                 Position,
                 null,
                 Color.White,
                 0f,
                 Vector2.Zero,
-                0.2f, // Escala
+                scale, 
                 _flip,
                 0f
             );

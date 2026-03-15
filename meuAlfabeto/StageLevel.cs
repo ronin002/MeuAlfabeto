@@ -9,6 +9,11 @@ namespace meuAlfabeto
     public class StageLevel
     {
             
+        Texture2D backgroundTexture;
+        ContentManager _content;
+        public int _currentStage = 0;
+
+
         public Texture2D alfabetoTexture;
         public List<LetraColetavel> letrasNoMapa = new List<LetraColetavel>();
             
@@ -16,11 +21,14 @@ namespace meuAlfabeto
         // Banner e Texturas
         public Texture2D alfabetoCinzaTexture;
         public int indiceLetraAtual = 0; // 0 = A, 1 = B...
-        public string ordemAlfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        public string[] stages = new string[]
+        public string ordemAlfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
+        public (string challenge, string background)[] stages = new (string challenge, string background)[]
         {
-            "AEIOU", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            ("AEIOU", "florest1"),
+            ("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "florest2")
         }; 
+        
+        
 
         // Letras Caindo
         public List<LetraColetavel> _letrasCaindo = new List<LetraColetavel>();
@@ -28,28 +36,32 @@ namespace meuAlfabeto
         double spawnInterval = 3; // Segundos entre cada queda
         public Dictionary<string, Rectangle> _letrasSource; // Mover para global para acessar no Update
         Random random = new Random();    
+
         public StageLevel(int stageIndex, ContentManager content)
         {
             
             if (stageIndex >= 0 && stageIndex < stages.Length)
             {
-                ordemAlfabeto = stages[stageIndex];
-                LoadLevel(content);
+                _currentStage = stageIndex;
+                _content = content;
+                LoadLevelBackground();
+                LoadLevelAfabet();
             }
             
         }
 
-        public void LoadLevel(ContentManager content)
+        public void LoadLevelBackground()
+        {
+            ordemAlfabeto = stages[_currentStage].challenge;
+            backgroundTexture = _content.Load<Texture2D>("background/" + stages[_currentStage].background);           
+        } 
+
+        public void LoadLevelAfabet()
         {
 
-            alfabetoTexture = content.Load<Texture2D>("letters/alfabeto");
-            alfabetoCinzaTexture = content.Load<Texture2D>("letters/alfabeto_cinza");
+            alfabetoTexture = _content.Load<Texture2D>("letters/alfabeto");
+            alfabetoCinzaTexture = _content.Load<Texture2D>("letters/alfabeto_cinza");
 
-            //Letra A
-            //Rectangle rectA = new Rectangle(0, 0, 150, 150); // Exemplo: letra 'A' na posição (0,0) com tamanho 32x32
-            //letrasNoMapa.Add(new LetraColetavel('A', new Vector2(100, 100), rectA));
-
-            // Adicione isso no seu LoadContent ou em uma classe de utilitário
             _letrasSource = new Dictionary<string, Rectangle>
             {
                 // Linha 1
@@ -98,24 +110,15 @@ namespace meuAlfabeto
                 letrasNoMapa.Add(new LetraColetavel(caractere, new Vector2(100, 100), letra.Value));
             }
 
-            /*    
-            alfabetoTexture = content.Load<Texture2D>("alfabeto/alfabeto_colorido");
-            alfabetoCinzaTexture = content.Load<Texture2D>("alfabeto/alfabeto_cinza");
-            _letrasSource = new Dictionary<string, Rectangle>();
-            for (int i = 0; i < 26; i++)
-            {
-                _letrasSource.Add(((char)('A' + i)).ToString(), new Rectangle(i * 32, 0, 32, 32));
-            }
+       
+        }
 
-            // Carregar as letras do mapa
-            letrasNoMapa.Clear();
-            for (int i = 0; i < ordemAlfabeto.Length; i++)
-            {
-                char letra = ordemAlfabeto[i];
-                Vector2 posicao = new Vector2(100 + i * 50, 300); // Exemplo de posição
-                letrasNoMapa.Add(new LetraColetavel(letra, posicao, _letrasSource[letra.ToString()]));
-            }
-            */
+        public void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics)
+        {
+            
+            Rectangle screenBounds = new Rectangle(0, 0, graphics.Viewport.Width, graphics.Viewport.Height);
+    
+            spriteBatch.Draw(backgroundTexture, screenBounds, Color.White);
         }
 
         public void Update(GameTime gameTime, GraphicsDevice graphics, Vector2 playerPos)
@@ -151,7 +154,14 @@ namespace meuAlfabeto
                     if (letra.Caractere == ordemAlfabeto[indiceLetraAtual])
                     {
                         indiceLetraAtual++; // Avança no alfabeto!
-                        if (indiceLetraAtual >= ordemAlfabeto.Length) indiceLetraAtual = 0; // Reinicia se acabar
+                        if (indiceLetraAtual >= ordemAlfabeto.Length)
+                        {
+                            indiceLetraAtual = 0;
+                            _currentStage ++;
+                            LoadLevelBackground();
+                            
+                        }
+                        
                     }
                     
                     spawnTimer = 0; 
@@ -200,6 +210,10 @@ namespace meuAlfabeto
                 _letrasCaindo.Add(new LetraColetavel(c, pos, _letrasSource[chave]));
             }
         }
+
+        
         
     }
+
+    
 }
