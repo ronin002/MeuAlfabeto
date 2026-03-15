@@ -57,7 +57,7 @@ public class Game1 : Game
     // Letras Caindo
     List<LetraColetavel> letrasCaindo = new List<LetraColetavel>();
     double spawnTimer = 0;
-    double spawnInterval = 3.0; // Segundos entre cada queda
+    double spawnInterval = 3.125; // Segundos entre cada queda
     Dictionary<string, Rectangle> letrasSource; // Mover para global para acessar no Update
     Random random = new Random();    
 
@@ -266,20 +266,13 @@ public class Game1 : Game
         if (spawnTimer >= spawnInterval)
         {
             spawnTimer = 0;
-            
-            // Letra Correta (a próxima da sequência)
-            char letraCerta = ordemAlfabeto[indiceLetraAtual];
-            SpawnLetra(letraCerta);
 
-            // Letra Errada (qualquer outra aleatória)
-            char letraErrada;
-            do {
-                letraErrada = ordemAlfabeto[random.Next(ordemAlfabeto.Length)];
-            } while (letraErrada == letraCerta);
-            
-            SpawnLetra(letraErrada);
+            // Sorteia a posição da primeira letra
+            if (letrasCaindo.Count == 0) 
+            {
+                SpawnDuplaDeLetras();
+            }
         }
-
         // --- 2. Atualizar posição das letras caindo e Colisão ---
         Rectangle playerRect = new Rectangle((int)playerPosition.X, (int)playerPosition.Y, (int)(50), (int)(80));
 
@@ -299,7 +292,10 @@ public class Game1 : Game
                     if (indiceLetraAtual >= ordemAlfabeto.Length) indiceLetraAtual = 0; // Reinicia se acabar
                 }
                 
-                letrasCaindo.RemoveAt(i);
+                spawnTimer = 0; 
+                SpawnDuplaDeLetras();
+                letrasCaindo.Clear();
+                break;
             }
             else if (letra.Posicao.Y > GraphicsDevice.Viewport.Height)
             {
@@ -307,25 +303,7 @@ public class Game1 : Game
             }
         }
 
-        /*
-        Rectangle playerRect = new Rectangle((int)playerPosition.X, (int)playerPosition.Y, 50, 80);
-
-        foreach (var letra in letrasNoMapa)
-        {
-            if (!letra.Coletada)
-            {
-                Rectangle letraRect = new Rectangle((int)letra.Posicao.X, (int)letra.Posicao.Y, 50, 50);
-                
-                if (playerRect.Intersects(letraRect))
-                {
-                    letra.Coletada = true;
-                    // Aqui você pode tocar um som ou aumentar a pontuação!
-                    System.Console.WriteLine($"Coletou a letra: {letra.Caractere}");
-                }
-            }
-        }
-        */
-
+ 
         base.Update(gameTime);
     }
 
@@ -389,12 +367,35 @@ public class Game1 : Game
         base.Draw(gameTime);
     }
 
-    void SpawnLetra(char c)
+
+    void SpawnDuplaDeLetras()
+    {
+        // 1. Sorteia as posições X
+        int posX1 = random.Next(50, GraphicsDevice.Viewport.Width - 100);
+        int posX2;
+        do {
+            posX2 = random.Next(50, GraphicsDevice.Viewport.Width - 100);
+        } while (Math.Abs(posX1 - posX2) < 150);
+
+        // 2. Spawn Letra Certa
+        SpawnLetra(ordemAlfabeto[indiceLetraAtual], posX1);
+
+        // 3. Spawn Letra Errada
+        char letraErrada;
+        do {
+            letraErrada = ordemAlfabeto[random.Next(ordemAlfabeto.Length)];
+        } while (letraErrada == ordemAlfabeto[indiceLetraAtual]);
+        
+        SpawnLetra(letraErrada, posX2);
+    }
+
+    void SpawnLetra(char c, int posX)
     {
         string chave = c.ToString();
         if (letrasSource.ContainsKey(chave))
         {
-            Vector2 pos = new Vector2(random.Next(50, GraphicsDevice.Viewport.Width - 50), -50);
+            // Usa o posX que foi sorteado lá fora
+            Vector2 pos = new Vector2(posX, -150); 
             letrasCaindo.Add(new LetraColetavel(c, pos, letrasSource[chave]));
         }
     }
