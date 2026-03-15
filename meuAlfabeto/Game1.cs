@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 using System.Collections.Generic;
 
+
 namespace meuAlfabeto;
 
 public class Game1 : Game
@@ -40,6 +41,13 @@ public class Game1 : Game
     float gravity = 1200f; // Força que puxa para baixo
     float jumpForce = -500f; // Força do pulo (negativo sobe)
     float groundLevel = 300f; // Posição Y do seu "chão"
+
+
+    // Letters
+    
+    Texture2D alfabetoTexture;
+    List<LetraColetavel> letrasNoMapa = new List<LetraColetavel>();
+        
 
     public Game1()
     {
@@ -87,6 +95,64 @@ public class Game1 : Game
             string indice = i < 10 ? $"0{i}" : i.ToString();
             string fileName = $"player/jump/Jump_{indice}";
             jumpSprites.Add(Content.Load<Texture2D>(fileName));
+        }
+
+
+        // Letters
+        
+        alfabetoTexture = Content.Load<Texture2D>("letters/alfabeto");
+
+        //Letra A
+        //Rectangle rectA = new Rectangle(0, 0, 150, 150); // Exemplo: letra 'A' na posição (0,0) com tamanho 32x32
+        //letrasNoMapa.Add(new LetraColetavel('A', new Vector2(100, 100), rectA));
+
+        // Adicione isso no seu LoadContent ou em uma classe de utilitário
+        Dictionary<string, Rectangle> letrasSource = new Dictionary<string, Rectangle>
+        {
+            // Linha 1
+            { "A", new Rectangle(27, 20, 112, 152) },
+            { "B", new Rectangle(150, 20, 104, 150) },
+            { "C", new Rectangle(262, 19, 106, 153) },
+            { "D", new Rectangle(384, 19, 108, 152) },
+            { "E", new Rectangle(514, 19, 86, 152) },
+            { "F", new Rectangle(550, 201, 87, 153) },
+            { "G", new Rectangle(612, 18, 116, 154) },
+
+            // Linha 2
+            { "H", new Rectangle(17, 202, 102, 152) },
+            { "I", new Rectangle(142, 201, 35, 153) },
+            { "J", new Rectangle(202, 202, 94, 154) },
+            { "K", new Rectangle(311, 200, 101, 154) },
+            { "L", new Rectangle(645, 202, 81, 153) },
+            { "N", new Rectangle(426, 200, 106, 154) },
+            { "M", new Rectangle(744, 201, 126, 152) },
+            
+
+            // Linha 3
+            { "O", new Rectangle(12, 386, 119, 151) },
+            { "P", new Rectangle(145, 386, 99, 150) },
+            { "Q", new Rectangle(744, 18, 116, 154) },
+            //{ "I2", new Rectangle(255, 387, 37, 150) }, // Segundo 'I' na imagem
+            { "R", new Rectangle(304, 387, 102, 150) },
+            { "S", new Rectangle(412, 384, 96, 154) },
+            { "T", new Rectangle(508, 388, 102, 149) },
+            { "U", new Rectangle(744, 387, 126, 152) },
+            //{ "R2", new Rectangle(622, 386, 102, 152) }, // Segundo 'R' na imagem
+
+            // Linha 4
+            { "V", new Rectangle(13, 570, 109, 154) },
+            { "W", new Rectangle(132, 570, 156, 154) },
+            //{ "X", new Rectangle(290, 572, 108, 151) },
+            { "X2", new Rectangle(408, 572, 106, 151) }, // Segundo 'X'
+            { "Y", new Rectangle(517, 571, 104, 151) },
+            { "Z", new Rectangle(620, 571, 101, 152) }
+        };
+
+        foreach (var letra in letrasSource)
+        {
+            char caractere = letra.Key[0];
+            //letrasNoMapa.Add(new LetraColetavel(caractere, new Vector2(100 + letrasNoMapa.Count * 60, 200), letra.Value));
+            letrasNoMapa.Add(new LetraColetavel(caractere, new Vector2(100, 100), letra.Value));
         }
 
     }
@@ -159,6 +225,13 @@ public class Game1 : Game
             timer = 0;
         }
 
+        //FIM MOvimento e escolha de animação
+
+
+
+
+
+
         // --- Lógica de Animação ---
         timer += gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -170,6 +243,25 @@ public class Game1 : Game
             // Reinicia a animação se chegar ao fim da lista
             if (currentFrame >= currentAnimation.Count) 
                 currentFrame = 0;
+        }
+
+
+        // --- Lógica de Coleta de Letras ---
+        Rectangle playerRect = new Rectangle((int)playerPosition.X, (int)playerPosition.Y, 50, 80);
+
+        foreach (var letra in letrasNoMapa)
+        {
+            if (!letra.Coletada)
+            {
+                Rectangle letraRect = new Rectangle((int)letra.Posicao.X, (int)letra.Posicao.Y, 50, 50);
+                
+                if (playerRect.Intersects(letraRect))
+                {
+                    letra.Coletada = true;
+                    // Aqui você pode tocar um som ou aumentar a pontuação!
+                    System.Console.WriteLine($"Coletou a letra: {letra.Caractere}");
+                }
+            }
         }
 
         base.Update(gameTime);
@@ -202,6 +294,42 @@ public class Game1 : Game
             flip, // Aplica o efeito de espelhar
             0f
         );
+
+        Vector2 startPosition = new Vector2(20, 20); 
+        float espacamento = 10f; // Espaço entre uma letra e outra
+        float escalaLetra = 0.3f; // Tamanho das letras coletáveis
+
+        Vector2 currentPos = startPosition;
+
+        foreach (var letra in letrasNoMapa)
+        {
+            if (!letra.Coletada)
+            {
+                _spriteBatch.Draw(
+                    alfabetoTexture, 
+                    currentPos, 
+                    letra.SourceRect, 
+                    Color.White, 
+                    0f, 
+                    Vector2.Zero, 
+                    escalaLetra, 
+                    SpriteEffects.None, 
+                    0f
+                );
+
+                // Atualiza a posição para a próxima letra
+                // Largura da letra atual * escala + o espaçamento desejado
+                currentPos.X += (letra.SourceRect.Width * escalaLetra) + espacamento;
+
+                // Opcional: Se a linha ficar muito comprida e sair da tela, 
+                // você pode adicionar um "if" aqui para pular para a linha de baixo
+                if (currentPos.X > GraphicsDevice.Viewport.Width - 50)
+                {
+                    currentPos.X = startPosition.X; // Volta para o início da margem esquerda
+                    currentPos.Y += (letra.SourceRect.Height * escalaLetra) + espacamento; // Desce uma linha
+                }
+            }
+        }
 
         _spriteBatch.End();
 

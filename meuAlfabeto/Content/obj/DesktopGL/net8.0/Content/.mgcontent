@@ -4,6 +4,7 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/../../objetos/alfabeto.png</File>
     <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/background/florest03.jpg</File>
     <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/background/florest04.jpg</File>
     <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/background/forest1.jpg</File>
@@ -76,6 +77,7 @@
     <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/player/walk/Walk_20.png</File>
   </SourceFiles>
   <DestFiles>
+    <File>letters/alfabeto.png</File>
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>background/florest1.jpg</File>
