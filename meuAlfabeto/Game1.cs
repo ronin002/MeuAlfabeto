@@ -93,32 +93,6 @@ public class Game1 : Game
 
         _player.Draw(_spriteBatch);
 
-
-        // 2. Banner do Alfabeto (Topo da tela)
-        Vector2 bannerPos = new Vector2(20, 20);
-        float escalaBanner = 0.22f; 
-        
-        for (int i = 0; i <  _stageLevel.ordemAlfabeto.Length; i++)
-        {
-            string charAtual = _stageLevel.ordemAlfabeto[i].ToString();
-            // Se a letra já foi coletada, desenha Colorido. Se não, desenha Cinza.
-            Texture2D texUsar = (i < _stageLevel.indiceLetraAtual) ? _stageLevel.alfabetoTexture : _stageLevel.alfabetoCinzaTexture;
-
-            _spriteBatch.Draw(texUsar, bannerPos, _stageLevel._letrasSource[charAtual], Color.White, 0f, Vector2.Zero, escalaBanner, SpriteEffects.None, 0f);
-            
-            bannerPos.X += (_stageLevel._letrasSource[charAtual].Width * escalaBanner) + 5;
-            if (bannerPos.X > GraphicsDevice.Viewport.Width - 40) {
-                bannerPos.X = 20;
-                bannerPos.Y += 30;
-            }
-        }
-
-        // 3. Desenhar Letras Caindo
-        foreach (var letra in _stageLevel._letrasCaindo)
-        {
-            _spriteBatch.Draw(_stageLevel.alfabetoTexture, letra.Position, letra.SourceRect, Color.White, 0f, Vector2.Zero, 0.3f, SpriteEffects.None, 0f);
-        }
-
         _spriteBatch.End();
 
         base.Draw(gameTime);

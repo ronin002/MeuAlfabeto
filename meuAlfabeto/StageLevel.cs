@@ -115,10 +115,34 @@ namespace meuAlfabeto
 
         public void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics)
         {
-            
+            //BackGround
             Rectangle screenBounds = new Rectangle(0, 0, graphics.Viewport.Width, graphics.Viewport.Height);
-    
             spriteBatch.Draw(backgroundTexture, screenBounds, Color.White);
+
+            // Banner Letters
+            Vector2 bannerPos = new Vector2(20, 20);
+            float escalaBanner = 0.22f; 
+            
+            for (int i = 0; i <  ordemAlfabeto.Length; i++)
+            {
+                string charAtual = ordemAlfabeto[i].ToString();
+                // Se a letra já foi coletada, desenha Colorido. Se não, desenha Cinza.
+                Texture2D texUsar = (i < indiceLetraAtual) ? alfabetoTexture : alfabetoCinzaTexture;
+
+                spriteBatch.Draw(texUsar, bannerPos, _letrasSource[charAtual], Color.White, 0f, Vector2.Zero, escalaBanner, SpriteEffects.None, 0f);
+                
+                bannerPos.X += (_letrasSource[charAtual].Width * escalaBanner) + 5;
+                if (bannerPos.X > graphics.Viewport.Width - 40) {
+                    bannerPos.X = 20;
+                    bannerPos.Y += 30;
+                }
+            }
+
+            // Drop Letters
+            foreach (var letra in _letrasCaindo)
+            {
+                spriteBatch.Draw(alfabetoTexture, letra.Position, letra.SourceRect, Color.White, 0f, Vector2.Zero, 0.3f, SpriteEffects.None, 0f);
+            }
         }
 
         public void Update(GameTime gameTime, GraphicsDevice graphics, Vector2 playerPos)
