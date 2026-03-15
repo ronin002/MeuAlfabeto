@@ -113,3 +113,7 @@
 /home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/bin/Debug/net8.0/Content/player/idle/Idle_07.xnb
 /home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/bin/Debug/net8.0/Content/player/idle/Idle_08.xnb
 /home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/bin/Debug/net8.0/Content/player/idle/Idle_09.xnb
+/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/bin/Debug/net8.0/Content/music/stage1.ogg
+/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/bin/Debug/net8.0/Content/music/stage1.xnb
+/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/bin/Debug/net8.0/Content/music/stage2.ogg
+/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/bin/Debug/net8.0/Content/music/stage2.xnb

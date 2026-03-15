@@ -4,17 +4,30 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
+using Microsoft.Xna.Framework.Media; // Song e MediaPlayer
+using Microsoft.Xna.Framework.Audio; // SoundEffect
+
 namespace meuAlfabeto
 {
     public class StageLevel
     {
             
         Texture2D backgroundTexture;
+        Song backgroundMusic;
         ContentManager _content;
         public int _currentStage = 0;
 
 
+
+        //--- Effect Sounds
+        private SoundEffect _soundOk;
+        private SoundEffect _soundFail;
+
+
+
+
         public Texture2D alfabetoTexture;
+      
         public List<LetraColetavel> letrasNoMapa = new List<LetraColetavel>();
             
         //Letters falling sky
@@ -22,10 +35,10 @@ namespace meuAlfabeto
         public Texture2D alfabetoCinzaTexture;
         public int indiceLetraAtual = 0; // 0 = A, 1 = B...
         public string ordemAlfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
-        public (string challenge, string background)[] stages = new (string challenge, string background)[]
+        public (string challenge, string background, string backgroundMusic)[] stages = new (string challenge, string background, string backgroundMusic)[]
         {
-            ("AEIOU", "florest1"),
-            ("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "florest2")
+            ("AEIOU", "florest1", "stage1"),
+            ("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "florest2", "stage2")
         }; 
         
         
@@ -53,7 +66,12 @@ namespace meuAlfabeto
         public void LoadLevelBackground()
         {
             ordemAlfabeto = stages[_currentStage].challenge;
-            backgroundTexture = _content.Load<Texture2D>("background/" + stages[_currentStage].background);           
+            backgroundTexture = _content.Load<Texture2D>("background/" + stages[_currentStage].background);      
+            backgroundMusic = _content.Load<Song>("music/" + stages[_currentStage].backgroundMusic);     
+
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Volume = 0.2f;
+            MediaPlayer.Play(backgroundMusic);
         } 
 
         public void LoadLevelAfabet()

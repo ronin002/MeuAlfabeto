@@ -5,6 +5,8 @@
   <Config />
   <SourceFiles>
     <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/../../objetos/alfabeto.png</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/../../stage1.mp3</File>
+    <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/../../stage2.mp3</File>
     <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/background/florest03.jpg</File>
     <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/background/florest04.jpg</File>
     <File>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/background/forest1.jpg</File>
@@ -79,6 +81,8 @@
   </SourceFiles>
   <DestFiles>
     <File>letters/alfabeto.png</File>
+    <File>music/stage1.mp3</File>
+    <File>music/stage2.mp3</File>
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>background/florest1.jpg</File>

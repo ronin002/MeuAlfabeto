@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/../../stage1.mp3</SourceFile>
+  <SourceTime>2026-03-15T13:44:03.87093-03:00</SourceTime>
+  <DestFile>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/bin/DesktopGL/Content/music/stage1.xnb</DestFile>
+  <DestTime>2026-03-15T14:57:41.5528835-03:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2025-10-20T11:25:32-03:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2025-10-20T11:25:32-03:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/Content/bin/DesktopGL/Content/music/stage1.ogg</string>
+  </BuildOutput>
+</PipelineBuildEvent>
