@@ -103,3 +103,4 @@
 /home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/obj/Debug/net8.0/meuAlfabeto.genruntimeconfig.cache
 /home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/obj/Debug/net8.0/ref/meuAlfabeto.dll
 /home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/bin/Debug/net8.0/Content/letters/alfabeto.xnb
+/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/bin/Debug/net8.0/Content/letters/alfabeto_cinza.xnb

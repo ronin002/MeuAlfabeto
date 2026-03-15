@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
+using System;
 using System.Collections.Generic;
 
 
@@ -48,6 +48,18 @@ public class Game1 : Game
     Texture2D alfabetoTexture;
     List<LetraColetavel> letrasNoMapa = new List<LetraColetavel>();
         
+    //Letters falling sky
+    // Banner e Texturas
+    Texture2D alfabetoCinzaTexture;
+    int indiceLetraAtual = 0; // 0 = A, 1 = B...
+    string ordemAlfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    // Letras Caindo
+    List<LetraColetavel> letrasCaindo = new List<LetraColetavel>();
+    double spawnTimer = 0;
+    double spawnInterval = 3.0; // Segundos entre cada queda
+    Dictionary<string, Rectangle> letrasSource; // Mover para global para acessar no Update
+    Random random = new Random();    
 
     public Game1()
     {
@@ -101,13 +113,14 @@ public class Game1 : Game
         // Letters
         
         alfabetoTexture = Content.Load<Texture2D>("letters/alfabeto");
+        alfabetoCinzaTexture = Content.Load<Texture2D>("letters/alfabeto_cinza");
 
         //Letra A
         //Rectangle rectA = new Rectangle(0, 0, 150, 150); // Exemplo: letra 'A' na posição (0,0) com tamanho 32x32
         //letrasNoMapa.Add(new LetraColetavel('A', new Vector2(100, 100), rectA));
 
         // Adicione isso no seu LoadContent ou em uma classe de utilitário
-        Dictionary<string, Rectangle> letrasSource = new Dictionary<string, Rectangle>
+        letrasSource = new Dictionary<string, Rectangle>
         {
             // Linha 1
             { "A", new Rectangle(27, 20, 112, 152) },
@@ -143,7 +156,7 @@ public class Game1 : Game
             { "V", new Rectangle(13, 570, 109, 154) },
             { "W", new Rectangle(132, 570, 156, 154) },
             //{ "X", new Rectangle(290, 572, 108, 151) },
-            { "X2", new Rectangle(408, 572, 106, 151) }, // Segundo 'X'
+            { "X", new Rectangle(408, 572, 106, 151) }, // Segundo 'X'
             { "Y", new Rectangle(517, 571, 104, 151) },
             { "Z", new Rectangle(620, 571, 101, 152) }
         };
@@ -167,7 +180,7 @@ public class Game1 : Game
         var kstate = Keyboard.GetState();
         float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-        
+        // PLAYER MOVEMENT + GRAVITY + JUMPING
         
         List<Texture2D> oldAnimation = currentAnimation;
 
@@ -245,8 +258,56 @@ public class Game1 : Game
                 currentFrame = 0;
         }
 
-
+        
         // --- Lógica de Coleta de Letras ---
+
+        // --- 1. Lógica de Spawn (Cair 2 letras) ---
+        spawnTimer += dt;
+        if (spawnTimer >= spawnInterval)
+        {
+            spawnTimer = 0;
+            
+            // Letra Correta (a próxima da sequência)
+            char letraCerta = ordemAlfabeto[indiceLetraAtual];
+            SpawnLetra(letraCerta);
+
+            // Letra Errada (qualquer outra aleatória)
+            char letraErrada;
+            do {
+                letraErrada = ordemAlfabeto[random.Next(ordemAlfabeto.Length)];
+            } while (letraErrada == letraCerta);
+            
+            SpawnLetra(letraErrada);
+        }
+
+        // --- 2. Atualizar posição das letras caindo e Colisão ---
+        Rectangle playerRect = new Rectangle((int)playerPosition.X, (int)playerPosition.Y, (int)(50), (int)(80));
+
+        for (int i = letrasCaindo.Count - 1; i >= 0; i--)
+        {
+            var letra = letrasCaindo[i];
+            letra.Posicao.Y += 100f * dt; // Velocidade de queda
+
+            Rectangle letraRect = new Rectangle((int)letra.Posicao.X, (int)letra.Posicao.Y, 40, 40);
+
+            if (playerRect.Intersects(letraRect))
+            {
+                // Se pegou a letra certa na ordem
+                if (letra.Caractere == ordemAlfabeto[indiceLetraAtual])
+                {
+                    indiceLetraAtual++; // Avança no alfabeto!
+                    if (indiceLetraAtual >= ordemAlfabeto.Length) indiceLetraAtual = 0; // Reinicia se acabar
+                }
+                
+                letrasCaindo.RemoveAt(i);
+            }
+            else if (letra.Posicao.Y > GraphicsDevice.Viewport.Height)
+            {
+                letrasCaindo.RemoveAt(i); // Remove se sumir da tela
+            }
+        }
+
+        /*
         Rectangle playerRect = new Rectangle((int)playerPosition.X, (int)playerPosition.Y, 50, 80);
 
         foreach (var letra in letrasNoMapa)
@@ -263,9 +324,12 @@ public class Game1 : Game
                 }
             }
         }
+        */
 
         base.Update(gameTime);
     }
+
+    
 
     protected override void Draw(GameTime gameTime)
     {
@@ -295,44 +359,43 @@ public class Game1 : Game
             0f
         );
 
-        Vector2 startPosition = new Vector2(20, 20); 
-        float espacamento = 10f; // Espaço entre uma letra e outra
-        float escalaLetra = 0.3f; // Tamanho das letras coletáveis
+        // 2. Banner do Alfabeto (Topo da tela)
+        Vector2 bannerPos = new Vector2(20, 20);
+        float escalaBanner = 0.22f; 
 
-        Vector2 currentPos = startPosition;
-
-        foreach (var letra in letrasNoMapa)
+        for (int i = 0; i < ordemAlfabeto.Length; i++)
         {
-            if (!letra.Coletada)
-            {
-                _spriteBatch.Draw(
-                    alfabetoTexture, 
-                    currentPos, 
-                    letra.SourceRect, 
-                    Color.White, 
-                    0f, 
-                    Vector2.Zero, 
-                    escalaLetra, 
-                    SpriteEffects.None, 
-                    0f
-                );
+            string charAtual = ordemAlfabeto[i].ToString();
+            // Se a letra já foi coletada, desenha Colorido. Se não, desenha Cinza.
+            Texture2D texUsar = (i < indiceLetraAtual) ? alfabetoTexture : alfabetoCinzaTexture;
 
-                // Atualiza a posição para a próxima letra
-                // Largura da letra atual * escala + o espaçamento desejado
-                currentPos.X += (letra.SourceRect.Width * escalaLetra) + espacamento;
-
-                // Opcional: Se a linha ficar muito comprida e sair da tela, 
-                // você pode adicionar um "if" aqui para pular para a linha de baixo
-                if (currentPos.X > GraphicsDevice.Viewport.Width - 50)
-                {
-                    currentPos.X = 200f; // Volta para o início da margem esquerda
-                    currentPos.Y += (letra.SourceRect.Height * escalaLetra) + espacamento; // Desce uma linha
-                }
+            _spriteBatch.Draw(texUsar, bannerPos, letrasSource[charAtual], Color.White, 0f, Vector2.Zero, escalaBanner, SpriteEffects.None, 0f);
+            
+            bannerPos.X += (letrasSource[charAtual].Width * escalaBanner) + 5;
+            if (bannerPos.X > GraphicsDevice.Viewport.Width - 40) {
+                bannerPos.X = 20;
+                bannerPos.Y += 30;
             }
+        }
+
+        // 3. Desenhar Letras Caindo
+        foreach (var letra in letrasCaindo)
+        {
+            _spriteBatch.Draw(alfabetoTexture, letra.Posicao, letra.SourceRect, Color.White, 0f, Vector2.Zero, 0.3f, SpriteEffects.None, 0f);
         }
 
         _spriteBatch.End();
 
         base.Draw(gameTime);
+    }
+
+    void SpawnLetra(char c)
+    {
+        string chave = c.ToString();
+        if (letrasSource.ContainsKey(chave))
+        {
+            Vector2 pos = new Vector2(random.Next(50, GraphicsDevice.Viewport.Width - 50), -50);
+            letrasCaindo.Add(new LetraColetavel(c, pos, letrasSource[chave]));
+        }
     }
 }
