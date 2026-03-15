@@ -159,9 +159,7 @@ namespace meuAlfabeto
                             indiceLetraAtual = 0;
                             _currentStage ++;
                             LoadLevelBackground();
-                            
-                        }
-                        
+                        }                      
                     }
                     
                     spawnTimer = 0; 
