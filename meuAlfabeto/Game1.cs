@@ -325,7 +325,7 @@ public class Game1 : Game
                 // você pode adicionar um "if" aqui para pular para a linha de baixo
                 if (currentPos.X > GraphicsDevice.Viewport.Width - 50)
                 {
-                    currentPos.X = startPosition.X; // Volta para o início da margem esquerda
+                    currentPos.X = 200f; // Volta para o início da margem esquerda
                     currentPos.Y += (letra.SourceRect.Height * escalaLetra) + espacamento; // Desce uma linha
                 }
             }
