@@ -95,7 +95,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player/idle/Idle_1.png
+/build:player/idle/Idle_1.png;player/idle/Idle_01.png
 
 #begin player/idle/Idle_10.png
 /importer:TextureImporter
@@ -191,7 +191,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player/idle/Idle_2.png
+/build:player/idle/Idle_2.png;player/idle/Idle_02.png
 
 #begin player/idle/Idle_3.png
 /importer:TextureImporter
@@ -203,7 +203,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player/idle/Idle_3.png
+/build:player/idle/Idle_3.png;player/idle/Idle_03.png
 
 #begin player/idle/Idle_4.png
 /importer:TextureImporter
@@ -215,7 +215,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player/idle/Idle_4.png
+/build:player/idle/Idle_4.png;player/idle/Idle_04.png
 
 #begin player/idle/Idle_5.png
 /importer:TextureImporter
@@ -227,7 +227,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player/idle/Idle_5.png
+/build:player/idle/Idle_5.png;player/idle/Idle_05.png
 
 #begin player/idle/Idle_6.png
 /importer:TextureImporter
@@ -239,7 +239,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player/idle/Idle_6.png
+/build:player/idle/Idle_6.png;player/idle/Idle_06.png
 
 #begin player/idle/Idle_7.png
 /importer:TextureImporter
@@ -251,7 +251,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player/idle/Idle_7.png
+/build:player/idle/Idle_7.png;player/idle/Idle_07.png
 
 #begin player/idle/Idle_8.png
 /importer:TextureImporter
@@ -263,7 +263,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player/idle/Idle_8.png
+/build:player/idle/Idle_8.png;player/idle/Idle_08.png
 
 #begin player/idle/Idle_9.png
 /importer:TextureImporter
@@ -275,7 +275,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player/idle/Idle_9.png
+/build:player/idle/Idle_9.png;player/idle/Idle_09.png
 
 #begin player/jump/Jump_01.png
 /importer:TextureImporter

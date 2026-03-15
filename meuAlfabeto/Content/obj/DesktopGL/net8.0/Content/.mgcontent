@@ -84,6 +84,7 @@
     <File>background/florest1.jpg</File>
     <File>background/florest2.jpg</File>
     <File xsi:nil="true" />
+    <File>player/idle/Idle_01.png</File>
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
@@ -91,15 +92,14 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
+    <File>player/idle/Idle_02.png</File>
+    <File>player/idle/Idle_03.png</File>
+    <File>player/idle/Idle_04.png</File>
+    <File>player/idle/Idle_05.png</File>
+    <File>player/idle/Idle_06.png</File>
+    <File>player/idle/Idle_07.png</File>
+    <File>player/idle/Idle_08.png</File>
+    <File>player/idle/Idle_09.png</File>
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MeuAlfabeto;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -19,28 +20,9 @@ public class Game1 : Game
 
     // Player Variables
 
-    // Animations
-    List<Texture2D> idleSprites;
-    List<Texture2D> walkSprites;
-    List<Texture2D> jumpSprites;
 
-    Vector2 playerPosition;
-    int currentFrame = 0;
-    double timer = 0;
-    double frameTime = 0.04;
-
-
-    List<Texture2D> currentAnimation;
-    float playerSpeed = 200f;        
-    SpriteEffects flip = SpriteEffects.None;
-
-
-    //GRAVITY
-    bool isJumping = false;
-    float verticalVelocity = 0;
-    float gravity = 1200f; // Força que puxa para baixo
-    float jumpForce = -500f; // Força do pulo (negativo sobe)
-    float groundLevel = 300f; // Posição Y do seu "chão"
+    Player _player;
+ 
 
 
     // Letters
@@ -57,7 +39,7 @@ public class Game1 : Game
     // Letras Caindo
     List<LetraColetavel> letrasCaindo = new List<LetraColetavel>();
     double spawnTimer = 0;
-    double spawnInterval = 3.125; // Segundos entre cada queda
+    double spawnInterval = 3; // Segundos entre cada queda
     Dictionary<string, Rectangle> letrasSource; // Mover para global para acessar no Update
     Random random = new Random();    
 
@@ -82,33 +64,13 @@ public class Game1 : Game
         //Environment
         backgroundTexture = Content.Load<Texture2D>("background/florest1");
 
+        _player = new Player();
+        (string, int) maskIdle = ("player/idle/Idle_{0}", 16); //path and size of the idle sprites
+        (string, int) maskWalk = ("player/walk/Walk_{0}", 19);
+        (string, int) maskJump = ("player/jump/Jump_{0}", 30);
+        _player.LoadPlayer(Content, maskIdle, maskWalk, maskJump);
 
-        //player
-        playerPosition = new Vector2(300, 320);
-
-        idleSprites = new List<Texture2D>();
-        for (int i = 1; i <= 16; i++) // Ajuste o '2' para o total de fotos que você tiver
-        {
-            string fileName = $"player/idle/Idle_{i}";
-            idleSprites.Add(Content.Load<Texture2D>(fileName));
-        }
-
-        walkSprites = new List<Texture2D>();
-        for (int i = 1; i <= 19; i++)
-        {
-            string indice = i < 10 ? $"0{i}" : i.ToString();
-            string fileName = $"player/walk/Walk_{indice}";
-            walkSprites.Add(Content.Load<Texture2D>(fileName));
-        }
-
-        jumpSprites = new List<Texture2D>();
-        for (int i = 1; i <= 30; i++)
-        {
-            string indice = i < 10 ? $"0{i}" : i.ToString();
-            string fileName = $"player/jump/Jump_{indice}";
-            jumpSprites.Add(Content.Load<Texture2D>(fileName));
-        }
-
+      
 
         // Letters
         
@@ -170,6 +132,8 @@ public class Game1 : Game
 
     }
 
+    
+
     protected override void Update(GameTime gameTime)
     {
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -181,83 +145,8 @@ public class Game1 : Game
         float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
         // PLAYER MOVEMENT + GRAVITY + JUMPING
+        _player.Update(gameTime);
         
-        List<Texture2D> oldAnimation = currentAnimation;
-
-        if (playerPosition.Y < groundLevel) // Se estiver acima do chão
-        {
-            verticalVelocity += gravity * dt; // Gravidade puxa pra baixo
-        }
-        else // Se tocou no chão
-        {
-            verticalVelocity = 0;
-            playerPosition.Y = groundLevel;
-            isJumping = false;
-        }
-
-        // 2. Comando de Pulo
-        if (kstate.IsKeyDown(Keys.Space) && !isJumping)
-        {
-            verticalVelocity = jumpForce;
-            isJumping = true;
-        }
-
-        // 3. Aplica a velocidade vertical na posição
-        playerPosition.Y += verticalVelocity * dt;
-
-        //4. Lógica de Animação (Estados)
-        if (kstate.IsKeyDown(Keys.Left))
-        {
-            playerPosition.X -= playerSpeed * dt;
-            flip = SpriteEffects.FlipHorizontally;
-        }
-        if (kstate.IsKeyDown(Keys.Right))
-        {
-            playerPosition.X += playerSpeed * dt;
-            flip = SpriteEffects.None;
-        }
-
-        // 2. Definição da Animação (Aqui decidimos qual sprite mostrar)
-        if (isJumping)
-        {
-            currentAnimation = jumpSprites;
-        }
-        else if (kstate.IsKeyDown(Keys.Left) || kstate.IsKeyDown(Keys.Right))
-        {
-            currentAnimation = walkSprites;
-        }
-        else
-        {
-            currentAnimation = idleSprites;
-        }
-
-        // Reset de frame se trocar animação
-        if (oldAnimation != currentAnimation)
-        {
-            currentFrame = 0;
-            timer = 0;
-        }
-
-        //FIM MOvimento e escolha de animação
-
-
-
-
-
-
-        // --- Lógica de Animação ---
-        timer += gameTime.ElapsedGameTime.TotalSeconds;
-
-        if (timer >= frameTime)
-        {
-            currentFrame++;
-            timer = 0;
-            
-            // Reinicia a animação se chegar ao fim da lista
-            if (currentFrame >= currentAnimation.Count) 
-                currentFrame = 0;
-        }
-
         
         // --- Lógica de Coleta de Letras ---
 
@@ -274,14 +163,14 @@ public class Game1 : Game
             }
         }
         // --- 2. Atualizar posição das letras caindo e Colisão ---
-        Rectangle playerRect = new Rectangle((int)playerPosition.X, (int)playerPosition.Y, (int)(50), (int)(80));
+        Rectangle playerRect = new Rectangle((int)_player.Position.X, (int)_player.Position.Y, (int)(50), (int)(80));
 
         for (int i = letrasCaindo.Count - 1; i >= 0; i--)
         {
             var letra = letrasCaindo[i];
-            letra.Posicao.Y += 100f * dt; // Velocidade de queda
+            letra.Position.Y += 100f * dt; // Velocidade de queda
 
-            Rectangle letraRect = new Rectangle((int)letra.Posicao.X, (int)letra.Posicao.Y, 40, 40);
+            Rectangle letraRect = new Rectangle((int)letra.Position.X, (int)letra.Position.Y, 40, 40);
 
             if (playerRect.Intersects(letraRect))
             {
@@ -297,7 +186,7 @@ public class Game1 : Game
                 letrasCaindo.Clear();
                 break;
             }
-            else if (letra.Posicao.Y > GraphicsDevice.Viewport.Height)
+            else if (letra.Position.Y > GraphicsDevice.Viewport.Height)
             {
                 letrasCaindo.RemoveAt(i); // Remove se sumir da tela
             }
@@ -323,17 +212,17 @@ public class Game1 : Game
     
         float scale = 0.2f;
        
-        int safeFrame = currentFrame % currentAnimation.Count;
+        int safeFrame =  _player._currentFrame %  _player._currentAnimation.Count;
 
         _spriteBatch.Draw(
-            currentAnimation[safeFrame], 
-            playerPosition, 
+            _player._currentAnimation[safeFrame], 
+            _player.Position, 
             null, 
             Color.White, 
             0f, 
             Vector2.Zero, 
             scale, //0.3f, // Sua escala
-            flip, // Aplica o efeito de espelhar
+            _player._flip, // Aplica o efeito de espelhar
             0f
         );
 
@@ -359,7 +248,7 @@ public class Game1 : Game
         // 3. Desenhar Letras Caindo
         foreach (var letra in letrasCaindo)
         {
-            _spriteBatch.Draw(alfabetoTexture, letra.Posicao, letra.SourceRect, Color.White, 0f, Vector2.Zero, 0.3f, SpriteEffects.None, 0f);
+            _spriteBatch.Draw(alfabetoTexture, letra.Position, letra.SourceRect, Color.White, 0f, Vector2.Zero, 0.3f, SpriteEffects.None, 0f);
         }
 
         _spriteBatch.End();

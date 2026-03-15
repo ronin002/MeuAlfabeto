@@ -104,3 +104,12 @@
 /home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/obj/Debug/net8.0/ref/meuAlfabeto.dll
 /home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/bin/Debug/net8.0/Content/letters/alfabeto.xnb
 /home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/bin/Debug/net8.0/Content/letters/alfabeto_cinza.xnb
+/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/bin/Debug/net8.0/Content/player/idle/Idle_01.xnb
+/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/bin/Debug/net8.0/Content/player/idle/Idle_02.xnb
+/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/bin/Debug/net8.0/Content/player/idle/Idle_03.xnb
+/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/bin/Debug/net8.0/Content/player/idle/Idle_04.xnb
+/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/bin/Debug/net8.0/Content/player/idle/Idle_05.xnb
+/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/bin/Debug/net8.0/Content/player/idle/Idle_06.xnb
+/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/bin/Debug/net8.0/Content/player/idle/Idle_07.xnb
+/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/bin/Debug/net8.0/Content/player/idle/Idle_08.xnb
+/home/ronin002/Documents/Programacao/Games/MeuAlfabeto/meuAlfabeto/bin/Debug/net8.0/Content/player/idle/Idle_09.xnb

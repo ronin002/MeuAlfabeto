@@ -3,17 +3,16 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace meuAlfabeto
 {
-    public class LetraColetavel
+    public class LetraColetavel : GenericStaticObj
     {
         public char Caractere;
-        public Vector2 Posicao;
-        public Rectangle SourceRect; // Onde a letra está na imagem original
         public bool Coletada = false;
 
         public LetraColetavel(char letra, Vector2 pos, Rectangle source)
+                                                        : base(pos, source)
         {
             Caractere = letra;
-            Posicao = pos;
+            Position = pos;
             SourceRect = source;
         }
     }
