@@ -209,6 +209,7 @@ namespace meuAlfabeto
                         {
                             indiceLetraAtual = 0;
                             _currentStage ++;
+                            if (_currentStage >= stages.Length) _currentStage = 0;
                             LoadLevelBackground();
                         }                      
                     }
